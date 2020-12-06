@@ -41,17 +41,22 @@ a {
   color: white;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 #main-doc {
   color: white;
   background-color: #5E5D5C;
   font-size: 1.2rem;
   width: 80%;
   margin-left: 20%;
+  line-height: 1.5em;
 }
 
 section > header {
   font-weight: bold;
-  padding: 1rem 0 1rem 0;
+  padding: 2rem 0 1rem 0;
   font-size: 1.75rem;
 }
 
