@@ -140,9 +140,13 @@ code {
     margin: 0;
   }
   #main-doc {
+    font-size: 2.2rem;
     position: relative;
     top: 420px;
     margin-left: 0;
     width: 100%;
+  }
+  section > header {
+    font-size: 2.5rem;
   }
 }
