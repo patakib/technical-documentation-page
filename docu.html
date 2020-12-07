@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="docu.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -15,6 +17,7 @@
       </header>
       <ul>
         <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+        <li><a class="nav-link" href="#Getting_started">Getting Started</a></li>
         <li><a class="nav-link" href="#File_Structure">File Structure</a></li>
         <li><a class="nav-link" href="#Models">Models</a></li>
         <li><a class="nav-link" href="#Admin">Admin</a></li>
@@ -27,51 +30,189 @@
       <section class="main-section" id="Introduction">
         <header>Introduction</header>
         <article>
-          <p>Django is a backend framework for web development, based on Python programming language.
-          Django is a fully open-source and free project, which you can even contribute to.
+          <p>Django is a backend framework for web development, based on <i>Python</i> programming language.
+          Django is a fully <i>open-source</i> and free project, which you can contribute to.
           The framework is a perfect choice for database-heavy web projects.
-          Django's first release was in 2005, it is maintained by the Django Software Foundation.</p>
+          Django's first release was in 2005, it is maintained by the <i>Django Software Foundation</i>.</p>
           <p>Django comes with a built-in admininstrative site, which is a practical and easy feature to support CRUD (create, retrieve, update, delete) operations.
-          It also has an ORM (Object-relational Mapper) that manages relational databases through "models", which are actually Python classes.
+          It also has an <i>ORM</i> (Object-relational Mapper) that manages relational databases through "models", which are actually Python classes.
           Django has a simple web server for development purposes.</p>
           <p>Its community is active and huge. There is a regular conference since 2008, called <i>DjangoCon</i>.</p>
+          <p>Even if this is a site where we introduce Django, the single source of truth is the <b><a href="https://docs.djangoproject.com/en/3.1/">official documentation</a></b>.
+            Please check that now if you haven't done it yet and do it continuously on your learning journey, it is compact, easy to read, very logical - absolutely fantastic.</p>
 
+        </article>
+      </section>
+      <section class="main-section" id="Getting_started">
+        <header>Getting Started</header>
+        <article>
+          <p>First of all, as Python is the language you'll use during programming in Django, let's check whether you have Python on your local computer:<br>
+          <code>>>>python</code> </p>
+          <p>If you have Python installed, you can create a virtual environment and activate it by typing:
+          <code>>>>python -m venv myenvironment<br>
+          >>>source myenvironment/bin/activate</code></p>
+          <p>Afterwards you can install Django in your environment:
+          <code>>>>python -m pip install Django</code></p>
+          <p>Then you can create your first project:
+            <code>>>>django-admin startproject myproject</code>
+            There is a special terminology here in Django, where we have projects and in each project we can have multiple applications.</p>
         </article>
       </section>
       <section class="main-section" id="File_Structure">
         <header>File Structure</header>
         <article>
+          <p>You have created your first project, now let's take a look at the files Django created for you. <br>
+          It should be like that:<br>
+          <ul>
+            <li>myproject/</li>
+            <ul>
+              <li>manage.py</li>
+              <li>myproject/</li>
+              <ul>
+                <li>__init__.py</li>
+                <li>asgi.py</li>
+                <li>wsgi.py</li>
+                <li>settings.py</li>
+                <li>urls.py</li>
+              </ul>
+            </ul>
+          </ul>
+          </p>
+          <p><i>manage.py</i> is the core of the project, you can give orders to your project via CLI with this file.<br>
+            You can run the development server with this file:
+            <code>>>>python manage.py runserver</code>
+          <i>settings.py</i> contains the main settings of your project including database, debug, installed apps and path options.</p>
+          <p>You can start your first app by typing:
+          <code>>>>python manage.py startapp myfirstapp</code>
+          It has created further files in your project:<br>
+          <ul>
+            <li>myfirstapp/</li>
+            <ul>
+              <li>__init__.py</li>
+              <li>admin.py</li>
+              <li>apps.py</li>
+              <li>models.py</li>
+              <li>tests.py</li>
+              <li>views.py</li>
+            </ul>
+          </ul>
 
+          It has also created another folder called <i>migrations</i>.</p>
         </article>
       </section>
       <section class="main-section" id="Models">
         <header>Models</header>
         <article>
-
+          <p>Django has an object-relational mapper which we can interact with by editing <i>models.py</i>.
+          Here we can create database tables by creating Python classes.
+          Django supports different database management systems, such as MySQL, PostgreSQL or Oracle.</p>
+          <p>Each class within <i>models.py</i> is a table in our database (which we can define and plug-in to our project by editing settings.py).
+          These classes are derived from <i>models.Model</i> superclass.</p>
+          <p>This is an API which makes our table creation very effective and easy.
+          Within your classes you really just need to define the attributes which will be the actual fields in the table:
+          <code>from django.db import models<br>
+          <br>
+          class Student(models.Model):<br>
+          &emsp;&emsp;first_name = models.CharField(max_length=50)<br>
+          &emsp;&emsp;last_name = models.CharField(max_length=80)<br>
+          </code></p>
+          <p>What have we done exactly?<br>
+          We basically created the Student table (like typing CREATE TABLE STUDENT in SQL) and added the fields <i>first_name</i> and <i>last_name</i>.
+          We defined the field type and the max possible length of the text.<br>
+          This is the way you can create tables and fields. There are tons of options for field types you can choose from in Django.</p>
+          <p>We have to talk about one important thing when discussing models in Django, this is the <i>migration</i>.<br>
+            When you run this command in the shell:
+            <code>>>>python manage.py makemigrations</code>
+            You tell Django to create the SQL parameters based on the models and prepare everything before run the database updates. Django stores these parameters in the <i>migrations</i> folder.</p>
+            <p>After that you can run this command:
+            <code>>>>python manage.py migrate</code>
+            Here you tell Django to apply the migrations you defined previously. This is the moment when your database reflects your models and everything is updated with respect to the database.</p>
         </article>
       </section>
       <section class="main-section" id="Admin">
         <header>Admin</header>
         <article>
-
+          <p>Django comes with a built-in administration site. you just have to run the following command in the shell:
+            <code>>>>python manage.py createsuperuser</code>
+            Here you will have to provide the superuser's name, email and password.</p>
+            <p>If you start the development server by typing:
+              <code>python manage.py runserver</code>
+              And open the localhost/admin (which is normally http://127.0.0.1:8000/admin/), you can see the admin page.
+              In order to see the <i>Student</i> model here, you have to register it.</p>
+              <p>Open up your <i>admin.py</i> file and add:
+                <code>from .models import Student<br>
+                <br>
+                admin.site.register(Student)
+              </code>
+              If you refresh the admin site, you will see the <i>Student</i> model.
+              </p>
+              <p>Here you can add actual students to the database, you can update their attributes and delete them.</p>
         </article>
       </section>
       <section class="main-section" id="Views">
         <header>Views</header>
         <article>
-
+          <p><i>views.py</i> is the file where you can build the logic of <i>what</i> you want to display for the user.
+            You can define <i>functions</i> and each of them will refer to a subpage of the website.
+            The goal of these view functions is to provide a logic to the system behind, which information you want to retrieve from the database on that particular site.</p>
+            <p>You also can think of views as the connector between model and html templates.
+            The database model stores your data (the structure is provided by you in <i>models.py</i>), the html template defines <i>how</i> the data is to be displayed on the front-end.
+            Django views connects them together in a special logic which you create in those functions.</p>
+            <p>Django views take an HTTP request as a parameter, get the data from the database and render a template as reply to the request.</p>
+            <p>Here is an example:
+              <code>def student_list(request):<br>
+                &emsp;&emsp;students = Student.objects.all()<br>
+                &emsp;&emsp;return render(request, 'myfirstapp/list.html',{'students':students})
+              </code>
+              It gives you back the list of all students registered in the <i>Student</i> table, when you request <i>list.html</i>.
+            </p>
         </article>
       </section>
       <section class="main-section" id="Templates">
         <header>Templates</header>
         <article>
-
+          <p>Templates are the html files which define <i>how</i> the data should be displayed on the client side.<br>
+          You can dinamically call the data in the template, you retrieve from <i>models.py</i> based on the logic of <i>views.py</i>
+          for this purpose there are some important parts of Django's template language: <br>
+          <ul>
+            <li>tags</li>
+            <li>variables</li>
+            <li>filters</li>
+          </ul>
+        </p>
+        <p>Template tags like <span class="inline-code">{% for %}</span>or <span class="inline-code">{% if %}</span> support the Python logic behind and they have a closing tag as well -
+          <span class="inline-code">{% endfor %}</span> and <span class="inline-code">{% endif %}</span> respectively.</p>
+        <p>If you want to display values dinamically, you should store those values in variables in <i>views.py</i> and Django provides with the result of the variable when you call them in the template.<br>
+        An example for template variables in this case could be <span class="inline-code">{{ student.last_name }}</span>, where you get the last name of the student(s).</p>
+        <p>Template filters are suitable for modifications on the variables, for instance <span class="inline-code">{{ student.first_name|upper }}</span>, where you get the first name of the student(s) converted to uppercase.</p>
         </article>
       </section>
       <section class="main-section" id="URLs">
         <header>URLs</header>
         <article>
-
+          <p>There is a <i>urls.py</i> file in the project folder, but generally you need to create another one in your app folder with the same name.
+          The logic behind this is to register all the urls in the app and you can easily plug-in those urls from each app in the project.</p>
+          <p>So let's create a <i>urls.py</i> in your myfirstapp folder and put this code into it:
+            <code>
+              from django.urls import path<br>
+              <br>
+              from . import views<br>
+              <br>
+              urlpatterns = [path('list.html', views.student, name='list')]
+            </code></p>
+            <p>Then open your another <i>urls.py</i> file from your project folder and type:
+              <code>
+                from django.contrib import admin<br>
+                from django.urls import include, path<br>
+                <br>
+                urlpatterns = [<br>
+                &emsp;&emsp;path('myfirstapp/', include('myfirstapp.urls')),<br>
+                &emsp;&emsp;path('admin/', admin.site.urls),<br>
+                ]
+              </code><br>
+              Congratulations!<br>
+              You have just created a basic Django app :)<br><br><br><br><br>
+              <p><i>Written by Balint Pataki in December, 2020. <br>Contact: pataki.balint[et]gmx.com</i></p>
         </article>
       </section>
     </main>

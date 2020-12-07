@@ -20,7 +20,7 @@ nav > header {
   font-size: 1.5rem;
   font-weight: 900;
   color: #28112B;
-  padding: 30px 0px 0px 0px;
+  padding: 30px 0px 30px 0px;
 }
 
 nav > ul {
@@ -50,8 +50,15 @@ a:hover {
   background-color: #5E5D5C;
   font-size: 1.2rem;
   width: 80%;
+  height: 100%;
   margin-left: 20%;
+  margin-bottom: 0px;
+  padding-bottom: 100px;
   line-height: 1.5em;
+}
+
+#main-doc > a {
+  font-weight: bolder;
 }
 
 section > header {
@@ -66,4 +73,76 @@ section {
 
 .main-section {
   padding: 0 3rem 0 2rem;
+}
+
+code {
+  font-family: 'Cutive Mono', monospace;
+  display: block;
+  text-align: left;
+  position: relative;
+  word-break: normal;
+  color: white;
+  padding: 15px;
+  margin: 15px;
+  width: 90%;
+  background-color: #71706F;
+}
+
+.inline-code {
+  font-family: 'Cutive Mono', monospace;
+}
+
+@media only screen and (max-width: 1200px) {
+  #navbar {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 300px;
+    border-bottom: 3px solid;
+    z-index: 1;
+  }
+  #navbar > ul > li {
+    padding: 2px 0 2px 0;
+    margin: 0;
+  }
+  nav > header {
+    padding: 20px 0 0 0;
+    margin: 0;
+  }
+  #main-doc {
+    position: relative;
+    top: 300px;
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  #navbar {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 420px;
+    border-bottom: 3px solid;
+    z-index: 1;
+  }
+  #navbar > ul > li {
+    padding: 5px 0 0 0;
+    margin: 0;
+    font-size: 2rem;
+  }
+  nav > header {
+    padding: 20px 0 0 0;
+    margin: 0;
+  }
+  #main-doc {
+    position: relative;
+    top: 420px;
+    margin-left: 0;
+    width: 100%;
+  }
 }
